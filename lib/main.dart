@@ -36,28 +36,52 @@ class _dicepageState extends State<dicepage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-              // ignore: deprecated_member_use
-              child: FlatButton(
-            onPressed: () {
-              changeDiceFace();
-            },
-            child: Image.asset(
-              'images/dice$leftDiceNumber.png',
+          Row(
+            children: [
+              Expanded(
+                  // ignore: deprecated_member_use
+                  child: FlatButton(
+                padding: EdgeInsets.fromLTRB(10, 120, 10, 120),
+                onPressed: () {
+                  changeDiceFace();
+                },
+                child: Image.asset(
+                  'images/dice$leftDiceNumber.png',
+                ),
+              )),
+              Expanded(
+                  // ignore: deprecated_member_use
+                  child: FlatButton(
+                padding: EdgeInsets.fromLTRB(10, 120, 10, 120),
+                onPressed: () {
+                  changeDiceFace();
+                },
+                child: Image.asset(
+                  'images/dice$rightDicenumber.png',
+                ),
+              )),
+            ],
+          ),
+          Container(
+            height: 60,
+            width: 120,
+            decoration: BoxDecoration(
+                color: Colors.red, borderRadius: BorderRadius.circular(15)),
+            child: FlatButton(
+              onPressed: () {
+                changeDiceFace();
+              },
+              child: const Text(
+                "Roll Dice",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
-          )),
-          Expanded(
-              // ignore: deprecated_member_use
-              child: FlatButton(
-            onPressed: () {
-              changeDiceFace();
-            },
-            child: Image.asset(
-              'images/dice$rightDicenumber.png',
-            ),
-          ))
+          ),
         ],
       ),
     );
