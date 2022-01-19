@@ -16,20 +16,24 @@ void main() {
   ));
 }
 
+// ignore: camel_case_types
 class dicepage extends StatefulWidget {
-  dicepage({Key? key}) : super(key: key);
+  const dicepage({Key? key}) : super(key: key);
 
   @override
   _dicepageState createState() => _dicepageState();
 }
 
+// ignore: camel_case_types
 class _dicepageState extends State<dicepage> {
+  var diceresult;
   int leftDiceNumber = 1;
-  int rightDicenumber = 1;
+  int rightDicenumber = 5;
   void changeDiceFace() {
     setState(() {
       leftDiceNumber = Random().nextInt(6) + 1;
       rightDicenumber = Random().nextInt(6) + 1;
+      diceresult = leftDiceNumber + rightDicenumber;
     });
   }
 
@@ -37,13 +41,14 @@ class _dicepageState extends State<dicepage> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Padding(padding: EdgeInsets.only(top: 20)),
           Row(
             children: [
               Expanded(
                   // ignore: deprecated_member_use
                   child: FlatButton(
-                padding: EdgeInsets.fromLTRB(10, 120, 10, 120),
                 onPressed: () {
                   changeDiceFace();
                 },
@@ -54,9 +59,9 @@ class _dicepageState extends State<dicepage> {
               Expanded(
                   // ignore: deprecated_member_use
                   child: FlatButton(
-                padding: EdgeInsets.fromLTRB(10, 120, 10, 120),
                 onPressed: () {
                   changeDiceFace();
+                  ;
                 },
                 child: Image.asset(
                   'images/dice$rightDicenumber.png',
@@ -64,11 +69,26 @@ class _dicepageState extends State<dicepage> {
               )),
             ],
           ),
+          const Padding(padding: EdgeInsets.only(top: 50)),
+          const SizedBox(
+            height: 100,
+          ),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              diceresult == null ? "" : " $diceresult",
+              style: const TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.white),
+            ),
+          ),
           Container(
             height: 60,
-            width: 120,
+            width: 200,
             decoration: BoxDecoration(
                 color: Colors.red, borderRadius: BorderRadius.circular(15)),
+            // ignore: deprecated_member_use
             child: FlatButton(
               onPressed: () {
                 changeDiceFace();
